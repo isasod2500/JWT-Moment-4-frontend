@@ -1,0 +1,85 @@
+html,
+body {
+  font-family: "Oswald", sans-serif
+}
+
+main {
+  background-color: #55aaa7;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type=text] {
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  background-color: lightgray;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#mainNav {
+
+  background-color: #ffffff;
+  width: 100%;
+
+
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+    justify-items: center;
+    padding-inline-start: 0;
+  }
+
+  .active-page{
+    background-color: #55aaa7;
+    padding: 1.2rem; 
+    text-decoration: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+p {
+  margin-bottom: -1rem;
+}
+
+
+
+@media (max-width: 768px) {
+  body {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  body {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    font-size: 1.2em;
+  }
+
+
+}
