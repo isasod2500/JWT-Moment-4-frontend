@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="src/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Oswald">
+    <script src="src/register.js"></script>
     <title>jwtbackend-4-1</title>
   </head>
   <body>
@@ -20,6 +21,30 @@
         </ul>
       </nav>
     </header>
-
+<main>
+    <section id="registerMain"> 
+        <h2>Registrera ditt konto nedan</h2>
+        <ul id="errorList">
+          
+        </ul>
+        <label for="username"><u>Användarnamn</u></label>
+        <input type="text" name="username" id="username">
+        <label for="password"><u>Lösenord</u></label>
+        <input type="password" name="password" id="password">
+        <label for="verifyPassword"><u>Bekräfta lösenord</u></label>
+        <input type="password" name="verifyPassword" id="verifyPassword">
+        <label for="firstname">Förnamn</label>
+        <input type="text" id="firstname" name="firstname">
+        <label for="surname">Efternamn</label>
+        <input type="text" id="surname" name="surname">
+        <label for="email"><u>E-post</u></label>
+        <input type="text" id="email" name="email">
+        <label for="birthdate"><u>Födelsedatum</u></label>
+        <input type="date" name="birthdate" id="birthdate">
+        <input type="submit" value="Skapa konto" id="register" formmethod="post">
+        
+        <p id="success"></p>
+      </section>
+</main>
   </body>
 </html>

@@ -14,10 +14,29 @@ section {
   align-items: center;
 }
 
+input {
+  margin-bottom: 1rem;
+}
+
 input[type=text] {
   padding: 0.5rem;
   border-radius: 10px;
   box-sizing: border-box;
+}
+
+#password {
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#verifyPassword {
+    padding: 0.5rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+#verifyPassword::-ms-reveal {
+  display: none;
 }
 
 input[type=submit] {
@@ -25,6 +44,12 @@ input[type=submit] {
   padding: 0.5rem;
   margin-top: 1rem;
   border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type=date] {
+  padding: 0.5rem;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -63,7 +88,7 @@ p {
 }
 
 #errorList {
-  
+  color: darkred
 }
 
 
