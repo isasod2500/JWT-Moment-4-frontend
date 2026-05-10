@@ -24,18 +24,22 @@ async function login() {
     return;
   }
 
-  //Dubbelkolla i fall kontot finns med användarnamnet
-  let result = await fetch(`https://jwt-moment-4-backend.onrender.com/api/login`, {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+  //Dubbelkolla i fall e-post eller anv.namn redan är upptaget
+   let result = await fetch(`https://jwt-moment-4-backend.onrender.com/api/users`, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+
+    })
 
   let fetchResult = await result.json()
 
   Object.values(fetchResult).forEach(entry => {
-    if (!username === entry.username) {
-      errors.push(`Användarnamn/e-post eller lösenord är inkorrekt.`)
+    if (username === entry.username) {
+      errors.push(`Användarnamn är upptaget`)
+      if(email === entry.email) {
+        errors.push(`E-post adressen är upptaget`)
+      }
       return;
     }
   })
