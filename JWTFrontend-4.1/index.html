@@ -1,40 +1,45 @@
 <!doctype html>
 <html lang="sv">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Oswald">
-    <script src="src/login.js"></script>
-    <title>jwtbackend-4-1</title>
-  </head>
-  <body>
-    <header>
-      <nav id="mainNav">
-        <ul>
-          <li>
-            <a href="/" class="active-page">Startsida</a>
-          </li>
-          <li>
-             <a href="/register">Registrera konto</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section id="indexMain"> 
-        <h2>Logga in här!</h2>
-        <ul id="errorList">
-          
-        </ul>
-        <label for="username">E-post eller anv.namn</label>
-        <input type="text" name="username" id="username">
-        <label for="password">Lösenord</label>
-        <input type="password" name="password" id="password">
-        <input type="submit" value="Logga in" id="login" formmethod="post">
-      </section>
-      <p>Har du inget konto?</p>
-      <p><a href="register.html">Registrera dig här!</a></p>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="./src/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <script type="module" src="./src/login.js"></script>
+  <title>jwtbackend-4-1</title>
+</head>
+
+<body>
+  <header>
+    <nav id="mainNav">
+      <ul>
+        <li>
+          <a href="index.html" class="active-page">Startsida</a>
+        </li>
+        <li>
+          <a href="register.html">Registrera konto</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="indexMain">
+      <h2>Logga in här!</h2>
+      <ul id="errorList">
+
+      </ul>
+      <form>
+      <label for="username">E-post eller anv.namn</label>
+      <input type="text" name="username" id="username">
+      <label for="password">Lösenord</label>
+      <input type="password" name="password" id="password">
+      <input type="submit" value="Logga in" id="login" formmethod="post">
+      </form>
+    </section>
+    <p>Har du inget konto?</p>
+    <p><a href="register.html">Registrera dig här!</a></p>
+  </main>
+</body>
+
 </html>
