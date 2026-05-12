@@ -1,15 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log(`DOM Loaded`)
 
-    document.getElementById("register").addEventListener("click", () => {
-        register()
-    })
-})
+    document.getElementById("registerForm").addEventListener("submit", register)
+});
 
-async function register() {
+async function register(event) {
 
-
-    //Hämtar länk från början, och jobbar utifrån en fetch istället för flera
+    event.preventDefault();
+    
     let result = await fetch(`https://jwt-moment-4-backend.onrender.com/api/users`)
     let fetchResult = await result.json();
 
@@ -25,14 +23,17 @@ async function register() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     let verifyPassword = document.getElementById("verifyPassword").value
+    let firstname = document.getElementById("firstname").value
+    let surname = document.getElementById("surname").value
     let email = document.getElementById("email").value
     let birthdate = document.getElementById("birthdate").value
 
-    //Bägge fält måste fyllas i
+    //Anv.namn måste fyllas i
     if (username === "") {
         errors.push(`Användarnamn måste anges`)
     }
 
+    //If-sats för saknat lösenord och i fall fälten inte matchar.
     if (password === "") {
         errors.push(`Lösenord måste anges`)
     } else if (password != verifyPassword) {
@@ -42,31 +43,33 @@ async function register() {
     }
 
 
-    
+    //e-post måste ha "@"
     if (email === "" || !email.includes("@")) {
         errors.push(`E-post i fel format eller saknas`)
         document.getElementById("email").value = ""
     }
 
-
+    //Födelsedatum kan inte vara tom
     if (birthdate === "") {
         errors.push(`Födelsedatum måste anges`)
     }
 
+    //Om errors finns
     if (errors.length > 0) {
         errors.forEach(error => {
             let errorLine = document.createElement("li")
             errorLine.innerHTML = error;
             errorList.appendChild(errorLine)
+            return;
         })
     }
 
     //Kolla ifall användarnamn eller e-post redan finns
     Object.values(fetchResult).forEach(entry => {
-        if (username === entry.username) {
+        if (username.toLowerCase() === entry.username.toLowerCase()) {
             errors.push(`Användarnamn används redan.`)
         }
-        if (email === entry.email) {
+        if (email.toLowerCase() === entry.email.toLowerCase()) {
             errors.push(`E-post används redan`)
         }
 
@@ -74,20 +77,37 @@ async function register() {
     })
 
     if (errors.length === 0) {
-        let success = document.getElementById("success")
-        success.innerHTML = `Konto skapat!`
 
-        let user = {
-            username: username,
-            password: password,
-            firstname: firstname,
-            surname: surname,
-            email: email,
-            birthdate: birthdate
+        try {
+            let response = await fetch(`https://jwt-moment-4-backend.onrender.com/api/register`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+
+                    username: username,
+                    password: password,
+                    firstname: firstname,
+                    surname: surname,
+                    email: email,
+                    birthdate: birthdate
+
+                })
+            })
+
+            console.log(response)
+
+            if (!response.ok) {
+                throw new Error(`Registration failed`)
+            }
+            let success = document.getElementById("success")
+            success.innerHTML = `Konto skapat!`
+        } catch (err) {
+            console.error(err)
         }
-
-        FormData.reset
-
     }
 
+    document.getElementById("registerForm").reset()
 }
+

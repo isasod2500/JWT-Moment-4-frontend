@@ -73,7 +73,7 @@ async function login() {
       const fetchResult = await response.json();
 
       localStorage.setItem("token", fetchResult.token);
-
+      document.location.href = "./signedin.html"
     } catch (err) {
       console.error(err)
     }
