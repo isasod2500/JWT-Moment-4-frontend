@@ -54,15 +54,7 @@ async function register(event) {
         errors.push(`Födelsedatum måste anges`)
     }
 
-    //Om errors finns
-    if (errors.length > 0) {
-        errors.forEach(error => {
-            let errorLine = document.createElement("li")
-            errorLine.innerHTML = error;
-            errorList.appendChild(errorLine)
-            return;
-        })
-    }
+
 
     //Kolla ifall användarnamn eller e-post redan finns
     Object.values(fetchResult).forEach(entry => {
@@ -75,6 +67,16 @@ async function register(event) {
 
         return;
     })
+
+        //Om errors finns
+    if (errors.length > 0) {
+        errors.forEach(error => {
+            let errorLine = document.createElement("li")
+            errorLine.innerHTML = error;
+            errorList.appendChild(errorLine)
+            return;
+        })
+    }
 
     if (errors.length === 0) {
 
