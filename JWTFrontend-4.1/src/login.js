@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log(`DOM Loaded`)
 
-  document.getElementById("login").addEventListener("click", login())
+  document.getElementById("login").addEventListener("click", login)
 })
 
-async function login() {
+async function login(event) {
   //Sidan ska inte laddas om vid submit, endast redirect i fall allt godkänns
   event.preventDefault()
 
@@ -25,24 +25,21 @@ async function login() {
   }
 
   //Dubbelkolla i fall e-post eller anv.namn redan är upptaget
-   let result = await fetch(`https://jwt-moment-4-backend.onrender.com/api/users`, {
-        headers: {
-            "Content-Type": "application/json"
-        }
+  let result = await fetch(`https://jwt-moment-4-backend.onrender.com/api/users`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
 
-    })
+  })
 
   let fetchResult = await result.json()
 
-  Object.values(fetchResult).forEach(entry => {
-    if (username === entry.username) {
-      errors.push(`Användarnamn är upptaget`)
-      if(email === entry.email) {
-        errors.push(`E-post adressen är upptaget`)
-      }
-      return;
-    }
-  })
+  const findUser = Object.values(fetchResult).some(entry =>
+    username === entry.username || username === entry.email
+  );
+  if (!findUser) {
+    errors.push(`Anv.namn/e-post eller lösenord är felaktigt.`)
+  }
 
   if (errors.length > 0) {
     errors.forEach(error => {
@@ -50,6 +47,7 @@ async function login() {
       errorLine.innerHTML = error
 
       errorList.appendChild(errorLine)
+      return;
     })
   }
 
@@ -61,10 +59,10 @@ async function login() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          username: "username",
-          password: "password"
+          username: username,
+          password: password
         })
-      })
+      })  
 
       if (!response.ok) {
         throw new Error(`Login failed`)
@@ -73,7 +71,9 @@ async function login() {
       const fetchResult = await response.json();
 
       localStorage.setItem("token", fetchResult.token);
-      document.location.href = "./signedin.html"
+      console.log(fetchResult)
+      console.log(response.status)
+
     } catch (err) {
       console.error(err)
     }
