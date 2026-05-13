@@ -24,23 +24,6 @@ async function login(event) {
     return;
   }
 
-  //Dubbelkolla i fall e-post eller anv.namn redan är upptaget
-  let result = await fetch(`https://jwt-moment-4-backend.onrender.com/api/users`, {
-    headers: {
-      "Content-Type": "application/json"
-    }
-
-  })
-
-  let fetchResult = await result.json()
-
-  const findUser = Object.values(fetchResult).some(entry =>
-    username === entry.username || username === entry.email
-  );
-  if (!findUser) {
-    errors.push(`Anv.namn/e-post eller lösenord är felaktigt.`)
-  }
-
   if (errors.length > 0) {
     errors.forEach(error => {
       let errorLine = document.createElement("li")
@@ -62,17 +45,34 @@ async function login(event) {
           username: username,
           password: password
         })
-      })  
+      })
 
       if (!response.ok) {
         throw new Error(`Login failed`)
       }
 
+
       const fetchResult = await response.json();
 
       localStorage.setItem("token", fetchResult.token);
-      console.log(fetchResult)
-      console.log(response.status)
+
+      const token = localStorage.getItem("token")
+      const protResponse = await fetch(
+        "https://jwt-moment-4-backend.onrender.com/signedin",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      const protData = protResponse.json()
+      console.log(protData)
+      console.log(protResponse.status)
+      if(!protResponse.ok) {
+        throw new Error(`Protected route failed`)
+      }
+      window.location.href = "/signedin.html";
 
     } catch (err) {
       console.error(err)
