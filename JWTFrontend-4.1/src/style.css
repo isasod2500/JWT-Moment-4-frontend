@@ -31,10 +31,11 @@ input[type=text] {
 }
 
 #verifyPassword {
-    padding: 0.5rem;
+  padding: 0.5rem;
   border-radius: 10px;
   box-sizing: border-box;
 }
+
 #verifyPassword::-ms-reveal {
   display: none;
 }
@@ -67,9 +68,9 @@ input[type=date] {
     padding-inline-start: 0;
   }
 
-  .active-page{
+  .active-page {
     background-color: #55aaa7;
-    padding: 1.2rem; 
+    padding: 1.2rem;
     text-decoration: none;
   }
 
@@ -102,14 +103,37 @@ form {
 }
 
 #signedinMain {
+
+  div {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
   a {
     text-decoration: none;
   }
+
   a:hover {
     text-decoration: underline;
   }
+
+  p {
+    padding-bottom: 2rem;
+  }
 }
 
+#credentials {
+  background: white;
+  border: grey solid 2px;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem;
+
+  p {
+    padding: 0 1rem 2rem 1rem;
+  }
+
+}
 
 @media (max-width: 768px) {
   body {
