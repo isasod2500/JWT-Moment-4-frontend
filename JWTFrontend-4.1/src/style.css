@@ -101,6 +101,15 @@ form {
   color: darkred
 }
 
+#signedinMain {
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
 
 @media (max-width: 768px) {
   body {

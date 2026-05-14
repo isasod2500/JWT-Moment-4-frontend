@@ -6,7 +6,8 @@ export default defineConfig({
       input: {
         main: 'index.html',
         register: 'register.html',
-        signedin: 'signedin.html'
+        signedin: 'signedin.html',
+        secret: 'secret.html'
       }
     }
   }
