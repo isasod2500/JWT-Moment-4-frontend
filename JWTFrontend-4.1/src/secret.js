@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getSecret()
 });
 
+//Fetchar information om användare som loggar in och printar ut det.
 async function getSecret() {
     const token = localStorage.getItem("token");
 
@@ -31,5 +32,4 @@ async function getSecret() {
     credentials.appendChild(email)
     credentials.appendChild(created)
 
-    console.log(data);
 }

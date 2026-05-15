@@ -70,7 +70,7 @@ input[type=date] {
 
   .active-page {
     background-color: #55aaa7;
-    padding: 1.2rem;
+    padding: 1.5rem;
     text-decoration: none;
   }
 
@@ -131,6 +131,35 @@ form {
 
   p {
     padding: 0 1rem 2rem 1rem;
+  }
+
+}
+
+#secretNav {
+
+  background-color: #ffffff;
+  width: 100%;
+
+
+  ul {
+    list-style: none;
+    display: grid;
+    justify-items: center;
+    padding-inline-start: 0;
+  }
+
+  .active-page {
+    background-color: #55aaa7;
+    padding: 1.5rem;
+    text-decoration: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 
 }

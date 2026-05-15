@@ -23,7 +23,7 @@ async function login(event) {
     errors.push(`Username and password must be filled in.`)
     return;
   }
-
+  //Om errors inte är tom
   if (errors.length > 0) {
     errors.forEach(error => {
       let errorLine = document.createElement("li")
@@ -34,6 +34,7 @@ async function login(event) {
     })
   }
 
+  //Om errors är tom, fetcha.
   if (errors.length === 0) {
     try {
       let response = await fetch(`https://jwt-moment-4-backend.onrender.com/api/login`, {
@@ -66,9 +67,8 @@ async function login(event) {
         }
       );
 
+      //Om svaret är fel/null så nekas inloggning. 
       const protData = protResponse.json()
-      console.log(protData)
-      console.log(protResponse.status)
       if(!protResponse.ok) {
         throw new Error(`Protected route failed`)
       }
